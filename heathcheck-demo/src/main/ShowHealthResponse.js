@@ -18,8 +18,12 @@ const ShowHealthResponse = (props) => {
       //keep tacks of x
       //don't run unless props changed
      useEffect(() => {
-      setLoading(true);
-      load(props.link);
+      if (props.link.trim().length != 0)
+      {
+          setLoading(true);
+          load(props.link);
+
+      }
       }, [props.link]);
 
   const load = (link) => {
@@ -45,6 +49,7 @@ const ShowHealthResponse = (props) => {
 
   return (
   <Container className={props.className}>
+     <div style={{ height: '140px', overflowY: 'scroll' }}>
     {
       //very interesting
       result.data && Object.keys(result.data).length > 0 &&
@@ -61,6 +66,7 @@ const ShowHealthResponse = (props) => {
         </div>
       </div>
 }
+</div>
     </Container>
   );
 };
