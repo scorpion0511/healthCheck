@@ -6,11 +6,11 @@ import { useState } from 'react';
 const Grid = (props) => {
   // An array representing a 4x4 grid
   const cells = Array.from(Array(4), () => Array(5).fill());
-  const pods = ['UI', 'MESSAGE-CLOUD', 'LAB-Web-SERVICE','NVENTORY-WEB-SERVICE', '', 'BATCH-SCHEDULER-CASE',
-  'BATCH-SCHEDULER-INVENTORY','BATCH-SCHEDULER-IMMUNIZATION', '', 'Reporting-Business-Intelligence',
-   'INVESTIGATION-API', 'CLIENT-API',
+  const pods = ['UI', 'MESSAGE-CLOUD', 'LAB-Web-SERVICE','NVENTORY-WEB-SERVICE', 'Reporting-Business-Intelligence', 
   'TERMINOLOGY-API', 'INVENTORY-API', 'CONSENT-API', 'ORGANIZATION-API', 'SECURITY-API' , 'PROVIDER-API',
-  'IMMUNIZATION-API', 'SHARED-SERVICE-API'];
+  'IMMUNIZATION-API', 'SHARED-SERVICE-API', 'INVESTIGATION-API', 'CLIENT-API','BATCH-SCHEDULER-CASE',
+  'BATCH-SCHEDULER-INVENTORY','BATCH-SCHEDULER-IMMUNIZATION',
+    '', ''];
 
   const podsObjs = {'UI':'panorama-cloud', 'MESSAGE-CLOUD':'messaging-cloud', 'LAB-Web-SERVICE':'lab-web-services-web','NVENTORY-WEB-SERVICE':'inventory-web-services-web', 'BATCH-SCHEDULER-CASE':'batch-scheduler-case',
   'BATCH-SCHEDULER-INVENTORY':'batch-scheduler-inventory','BATCH-SCHEDULER-IMMUNIZATION':'batch-scheduler-immunization', 'INVESTIGATION-API':'sdsmapi-investigation-web', 'CLIENT-API':'sdsmapi-client-web',
@@ -66,7 +66,7 @@ const Grid = (props) => {
       {cells.map((row, rowIndex) => (
         <div key={rowIndex} >
           {row.map((cell, cellIndex) => (
-            <div key={cellIndex} className="cell" id = {pods[(rowIndex + cellIndex) + (4* rowIndex)]} onClick={displayDetails}>
+            <div key={cellIndex} className={pods[(rowIndex + cellIndex) + (4* rowIndex)] === '' ? 'hideMe' : 'cell'} id = {pods[(rowIndex + cellIndex) + (4* rowIndex)]} onClick={displayDetails}>
               {pods[(rowIndex + cellIndex) + (4* rowIndex)]}
             </div>
           ))}
