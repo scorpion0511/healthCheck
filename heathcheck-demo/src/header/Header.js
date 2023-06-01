@@ -16,9 +16,8 @@ const Header = (props) => {
       <Container className={props.className}>
         <Row>
           <Col>
-            <h3 className='topParag'>HealthCheck Demo<Image src="tip.png" className="logo" thumbnail onClick={openModal}/></h3>
+            <h3 className='topParag'>HealthCheck Dashboard<Image src="tip.png" className="logo" thumbnail onClick={openModal}/></h3>
           </Col>
-          <Col className= "text-center"><p className='topParag'>{props.version}</p></Col>
           <Col className="right">
             <Image src="health.png" className="logo" thumbnail />
           </Col>

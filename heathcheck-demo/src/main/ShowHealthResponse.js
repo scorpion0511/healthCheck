@@ -18,13 +18,19 @@ const ShowHealthResponse = (props) => {
       //keep tacks of x
       //don't run unless props changed
      useEffect(() => {
-      if (props.link.trim().length != 0)
+      if (props.link != undefined && props.link.trim().length != 0)
       {
           setLoading(true);
           load(props.link);
 
       }
       }, [props.link]);
+      
+      useEffect(() => {
+       
+            setResult ([]);
+
+        }, [props.env]);
 
   const load = (link) => {
     if (link.trim().length > 0) {

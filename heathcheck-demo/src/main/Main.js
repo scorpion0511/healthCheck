@@ -1,62 +1,46 @@
-import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.css';
 import Container from 'react-bootstrap/Container';
 import ShowHealthResponse from './ShowHealthResponse';
 import Row from 'react-bootstrap/Row'; 
 import Col from 'react-bootstrap/Col'; 
-import Footer from '../footer/Footer';
 import { useState } from 'react';
+import Grid from './Grid';
 
 const Main = () => {
 
 
+
+  const envs = ['', 'T1', 'T2', 'AM1', 'LOCAL'];
+
   const [link, setLink] = useState('');
-  const [label, setLabel] = useState('');
+  const [env, setEnv] = useState('');
 
-  const termapi = (event) => {
-    fixLabel('T1', 'API');
-    setLink('https://panorama-t1-panorama.ocp-prime-c55d62f44ecad82c5f9640d22d3526e6-i000.ca-tor.containers.appdomain.cloud/health/ready');
-  };
-  const mcloud = (event) => {
-    fixLabel('T1', 'Message Cloud');
-    setLink('http://messaging-cloud-t1-panorama.ocp-prime-c55d62f44ecad82c5f9640d22d3526e6-i000.ca-tor.containers.appdomain.cloud/health/ready');
-  };
-  const ui = (event) => {
-    fixLabel('AM1', 'UI');
-    setLink('https://panorama-am1-panorama.ocp-prime-c55d62f44ecad82c5f9640d22d3526e6-i000.ca-tor.containers.appdomain.cloud/health/ready');
-  };
-  const local = (event) => {
-    fixLabel('Local', 'Message Cloud');
-    setLink('http://localhost:9000/health/live');
-  };
-  
-  const fixLabel = (a, b) =>
-  {
-    setLabel(a + '[' + b + ']');
+  const loadStatus = (event) => {
+    setEnv(event.target.value);
   }
-
      return (
-      <>
-     <Container className='top'>
-        <Row>
-          <Col md={8}>
-              <Form>
-                  <Form.Group  controlId="env">
-                      <Form.Control plaintext readOnly className='label'  value={label} /> 
-                  </Form.Group>
-              </Form>
-              <Footer className="general-border calculate"   termapi = {termapi} mcloud = {mcloud} ui = {ui}  local = {local}/>
-              
-            </Col>
-            <Col md={4}>
-                <ShowHealthResponse  className = "list-border" link ={link}/>
-            </Col>
-          </Row>    
-
-      </Container>
-
-      </>
-    );
+       <>
+         <Container className="top">
+           <Row>
+             <Col md={8}>
+              <div className='control'>
+               <select className="list" onChange={loadStatus}>
+                 {envs.map((item, index) => (
+                   <option key={index} value={item}>
+                     {item}
+                   </option>
+                 ))}
+               </select>
+               </div>
+               <Grid env = {env} setLink={setLink}/>
+             </Col>
+             <Col md={4}>
+               <ShowHealthResponse className="list-border" link={link} env={env} />
+             </Col>
+           </Row>
+         </Container>
+       </>
+     );
 }
 
 export default Main;
