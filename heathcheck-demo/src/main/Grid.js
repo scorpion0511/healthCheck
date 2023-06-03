@@ -28,13 +28,17 @@ const Grid = (props) => {
      {
         $('#'+id).css('background-color', 'greenyellow');
      }
-     else if (status.toUpperCase() === 'DEFAULT') 
+     else if (status.toUpperCase() === 'PARTIAL') 
      {
-        $('#'+id).css('background-color', 'lightgray');
+        $('#'+id).css('background-color', 'yellow');
+     }
+     else if (status.toUpperCase() === 'ERROR') 
+     {
+        $('#'+id).css('background-color', 'red');
      }
      else
      {
-        $('#'+id).css('background-color', 'red');
+        $('#'+id).css('background-color', 'lightgray');
      }
    }
    const buildUrl = (podId) => {
@@ -52,7 +56,14 @@ const Grid = (props) => {
    const displayDetails = (event) => {
    if (event.target.id.trim().length > 0 && props.env.trim().length > 0)
    {
+         const backgroundColor = $('#'+event.target.id).css('background-color');
+        if (backgroundColor === 'rgb(255, 0, 0)' || backgroundColor === 'red')
+        {
+          alert('POD is Not Accessible');
+          return;
+        }
         props.setLink(buildUrl(event.target.id));
+        props.setPod(event.target.id);
    }
 
    }

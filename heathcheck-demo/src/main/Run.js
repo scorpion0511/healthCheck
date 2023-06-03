@@ -45,14 +45,23 @@ const load = (pod) => {
         .then((response) => response.json())
         .then((result) => {
           const { checks } = result;
-          props.updateStatus(pod, checks[0].status);
+          props.updateStatus(pod, assessStatus(checks[0]));
         })
         .catch((error) => {
-            props.updateStatus(pod, 'FAILED');
+            props.updateStatus(pod, 'ERROR');
         });
     }
   };
-
+const assessStatus = (object) => {
+  const obj = object.data;
+  for (let key in obj) 
+  {
+    if (obj.hasOwnProperty(key) && obj[key] !== "OK") {
+      return "PARTIAL";
+    }
+  }
+  return object.status;
+}
 return (<div></div>);
 }
 export default Run;

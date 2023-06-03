@@ -55,14 +55,14 @@ const ShowHealthResponse = (props) => {
 
   return (
   <Container className={props.className}>
-     <div style={{ height: '140px', overflowY: 'scroll' }}>
+    <div className='podName'>{props.pod}</div>
+     <div style={{ height: '300px' }}>
     {
       //very interesting
       result.data && Object.keys(result.data).length > 0 &&
       <div>
         <div><span className='label-black'>Name:</span> {result.name}</div>
         <div><span className='label-black'>Status:</span> {result.status}</div>
-        <div style={{ height: '260px', overflowY: 'scroll' }}>
         {
           Object.keys(result.data).map((key) => (
             <div key={key}>
@@ -70,7 +70,6 @@ const ShowHealthResponse = (props) => {
             </div>))
         }
         </div>
-      </div>
 }
 </div>
     </Container>

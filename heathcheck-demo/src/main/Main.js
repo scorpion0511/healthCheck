@@ -10,13 +10,15 @@ const Main = () => {
 
 
 
-  const envs = ['', 'T1', 'T2', 'AM1', 'LOCAL'];
+  const envs = ['', 'T1', 'T2', 'AM1', 'AM3', 'AM4' , 'LOCAL'];
 
   const [link, setLink] = useState('');
   const [env, setEnv] = useState('');
+  const [pod, setPod] = useState('');
 
   const loadStatus = (event) => {
     setEnv(event.target.value);
+    setPod('');
   }
      return (
        <>
@@ -32,10 +34,10 @@ const Main = () => {
                  ))}
                </select>
                </div>
-               <Grid env = {env} setLink={setLink}/>
+               <Grid env = {env} setLink={setLink} setPod={setPod}/>
              </Col>
              <Col md={4}>
-               <ShowHealthResponse className="list-border" link={link} env={env} />
+               <ShowHealthResponse className="list-border" pod={pod} link={link} env={env} />
              </Col>
            </Row>
          </Container>
