@@ -56,7 +56,7 @@ const ShowHealthResponse = (props) => {
   return (
   <Container className={props.className}>
     <div className='podName'>{props.pod}</div>
-     <div style={{ height: '300px' }}>
+     <div style={{ height: '330px', overflowY: 'scroll' }}>
     {
       //very interesting
       result.data && Object.keys(result.data).length > 0 &&
