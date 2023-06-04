@@ -1,11 +1,8 @@
-
 import {useEffect} from 'react';
+import {pods, podsObjs , link, separation, protocol} from './data';
 
 const Run = (props) =>
 {
-    const link = 'panorama.ocp-prime-c55d62f44ecad82c5f9640d22d3526e6-i000.ca-tor.containers.appdomain.cloud/health/live';
-    const separation = '-';
-    const protocol = 'http://';
 
     const buildUrl = (podId) => {
         let httpProtocol = protocol;
@@ -13,14 +10,14 @@ const Run = (props) =>
        {
         httpProtocol = 'https://';
        } 
-       return httpProtocol + props.podsObjs[podId] + separation + props.env + separation + link;
+       return httpProtocol + podsObjs[podId] + separation + props.env + separation + link;
 }
 useEffect(() => {
     clear();
     if (props.env.trim().length != 0)
     {
       
-        props.pods.map(pod => {
+        pods.map(pod => {
             load(pod); 
         });
 
@@ -28,7 +25,7 @@ useEffect(() => {
     }, [props.env]);
 
 const clear = () => {
-    props.pods.filter(e=> e.trim().length > 0).map(pod => {
+    pods.filter(e=> e.trim().length > 0).map(pod => {
         props.updateStatus(pod, 'DEFAULT');
     });
 
