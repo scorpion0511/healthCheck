@@ -6,7 +6,7 @@ const Run = (props) =>
 
     const buildUrl = (podId) => {
         let httpProtocol = protocol;
-        if (props.env.toUpperCase() === 'AM1' && podId === 'UI')
+        if (props.env.toUpperCase() === 'AM1' && podId === 'Panorama-Cloud')
        {
         httpProtocol = 'https://';
        } 

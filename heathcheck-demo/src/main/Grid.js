@@ -31,7 +31,7 @@ const Grid = (props) => {
     if (podId.length > 0)
     {
         let httpProtocol = protocol;
-        if (props.env.toUpperCase() === 'AM1' && podId === 'UI')
+        if (props.env.toUpperCase() === 'AM1' && podId === 'Panorama-Cloud')
        {
         httpProtocol = 'https://';
        } 

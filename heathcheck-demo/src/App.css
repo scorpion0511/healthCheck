@@ -143,16 +143,17 @@
 }
 
 .cell {
-  background-color: lightgray; /* Adjust the background color of the cell */
+  background-color: lightgray; 
   margin: 10px;
   height: 70px;
+  width:150px;
   text-align: center;
-  padding: 5px;
-  font-size: 0.8em;
+  padding-top: 15px;
   font-weight: bold;
   border: black double;
-  border-radius: 25px;
-  text-shadow: 1px 1px 1px gray;
+  font-size: 0.9em;
+  border-radius: 15px;
+  text-shadow: 1px 1px 3px gray;
 
 }
 .success
