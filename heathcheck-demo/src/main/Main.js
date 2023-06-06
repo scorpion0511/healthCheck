@@ -5,12 +5,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'; 
 import { useState } from 'react';
 import Grid from './Grid';
+import {envs} from './common/common';
 
 const Main = () => {
 
 
 
-  const envs = ['', 'T1', 'T2', 'AM1', 'AM3', 'AM4' , 'LOCAL'];
 
   const [link, setLink] = useState('');
   const [env, setEnv] = useState('');

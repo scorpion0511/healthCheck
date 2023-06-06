@@ -1,17 +1,9 @@
 import {useEffect} from 'react';
-import {pods, podsObjs , link, separation, protocol} from './data';
+import {pods, podsObjs , link, separation, protocol, buildUrl} from './common/common';
 
 const Run = (props) =>
 {
 
-    const buildUrl = (podId) => {
-        let httpProtocol = protocol;
-        if (props.env.toUpperCase() === 'AM1' && podId === 'Panorama-Cloud')
-       {
-        httpProtocol = 'https://';
-       } 
-       return httpProtocol + podsObjs[podId] + separation + props.env + separation + link;
-}
 useEffect(() => {
     clear();
     if (props.env.trim().length != 0)
@@ -32,7 +24,7 @@ const clear = () => {
 }
 const load = (pod) => {
     if (pod.trim().length > 0) {
-      const url = buildUrl (pod);
+      const url = buildUrl (pod, props.env);
       fetch(url, {
         method: "GET",
         headers: {

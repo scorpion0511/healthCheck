@@ -2,7 +2,7 @@ import React from 'react';
 import Run from './Run';
 import $, { data } from 'jquery';
 import { useState } from 'react';
-import {pods, podsObjs, link, separation, protocol} from './data';
+import {pods, podsObjs, link, separation, protocol, buildUrl} from './common/common';
 
 const Grid = (props) => {
   // An array representing a 4x4 grid
@@ -27,18 +27,7 @@ const Grid = (props) => {
         $('#'+id).css('background-color', 'lightgray');
      }
    }
-   const buildUrl = (podId) => {
-    if (podId.length > 0)
-    {
-        let httpProtocol = protocol;
-        if (props.env.toUpperCase() === 'AM1' && podId === 'Panorama-Cloud')
-       {
-        httpProtocol = 'https://';
-       } 
-        return httpProtocol + podsObjs[podId] + separation + props.env + separation + link;
-    }
-    return podId;
- }
+   
    const displayDetails = (event) => {
    if (event.target.id.trim().length > 0 && props.env.trim().length > 0)
    {
@@ -48,7 +37,7 @@ const Grid = (props) => {
           alert('POD is Not Accessible');
           return;
         }
-        props.setLink(buildUrl(event.target.id));
+        props.setLink(buildUrl(event.target.id, props.env));
         props.setPod(event.target.id);
    }
 

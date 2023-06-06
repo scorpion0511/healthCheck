@@ -14,3 +14,17 @@ export const pods = ['Panorama-Cloud', 'MESSAGE-CLOUD', 'LAB-Web-SERVICE','NVENT
    export const link = 'panorama.ocp-prime-c55d62f44ecad82c5f9640d22d3526e6-i000.ca-tor.containers.appdomain.cloud/health/live';
    export const separation = '-';
    export const protocol = 'http://';
+   export const envs = ['', 'T1', 'T2', 'AM1', 'AM3', 'AM4'];
+
+  export const buildUrl = (podId, env) => {
+    if (podId.length > 0)
+    {
+        let httpProtocol = protocol;
+        if (env.toUpperCase() === 'AM1' && podId === 'Panorama-Cloud')
+       {
+        httpProtocol = 'https://';
+       } 
+        return httpProtocol + podsObjs[podId] + separation + env + separation + link;
+    }
+    return podId;
+ }
