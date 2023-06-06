@@ -1,8 +1,7 @@
 import React from 'react';
 import Run from './Run';
-import $, { data } from 'jquery';
-import { useState } from 'react';
-import {pods, podsObjs, link, separation, protocol, buildUrl} from './common/common';
+import $ from 'jquery';
+import {pods, buildUrl} from './common/common';
 
 const Grid = (props) => {
   // An array representing a 4x4 grid
